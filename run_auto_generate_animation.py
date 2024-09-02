@@ -1,16 +1,18 @@
 import subprocess
 
-
 def run_auto_generate_animation(blender_executable, script_file, log_file, n_runs):
     for i in range(n_runs):
         # Construct the command to run Blender in background mode
         command = [
             blender_executable,
-            #"--background",        # Run in background mode without UI
-            "--python", script_file,  # Specify the Python script to run
-            "-mat", "Body", # Specify material name
+            "--background",                # Run in background mode without UI
+            "--python", script_file,       # Specify the Python script to run
+            "--",                          # Separates Blender args from your script args
+            "-mat", "Body",                # Script arguments
             "-i", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/FemaleBody.blend",
-            "-o", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/renders/auto"
+            "-o", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/renders/auto",
+            "-p", "auto_rendered_animation_",
+            "-ext", ".mkv"
         ]
         
         # Open the log file for appending

@@ -123,7 +123,8 @@ def main():
     parser.add_argument("-mat", "--material_name",dest = "material_name", help="Material name")
     parser.add_argument("-hex", "--hex_color",dest = "hex_color", help="Hex color for the material. Random if not set")
 
-    args = parser.parse_args()
+    #args = parser.parse_args()
+    args = parser.parse_known_args(sys.argv[sys.argv.index("--")+1:])
     
 
     # Set the path to the Blender executable
@@ -157,6 +158,7 @@ def main():
 
     # Set the output file name
     output_file = os.path.join(args.output_directory, get_incremented_filename(args.output_directory, args.base_name, args.extension))
+    
 
     # !!!IMPORTANT!!! Ensure the blend file is loaded, otherwise it will try to so this on the default one.
     bpy.ops.wm.open_mainfile(filepath=args.blend_file)
