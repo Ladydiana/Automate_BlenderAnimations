@@ -124,8 +124,18 @@ def main():
     parser.add_argument("-hex", "--hex_color",dest = "hex_color", help="Hex color for the material. Random if not set")
 
     #args = parser.parse_args()
-    args = parser.parse_known_args(sys.argv[sys.argv.index("--")+1:])
+    #args = parser.parse_known_args(sys.argv[sys.argv.index("--")+1:])
+    # Handle Blender-specific arguments
+    #args, unknown = parser.parse_known_args()
+    args = parser.parse_known_args(sys.argv[sys.argv.index("--")+1:])[0]
     
+    # Print debug info
+    #print(args)
+    #print("Unknown arguments:", unknown)
+    
+    print("Printing args")
+    print(args)
+    print(args.output_directory)
 
     # Set the path to the Blender executable
     # blender_executable = "C:/Program Files/Blender Foundation/Blender 4.0/blender.exe"  
@@ -173,9 +183,9 @@ def main():
 
     # Set the rendering command
     render_command = [
-        blender_executable, 
+        args.blender_executable, 
         "-b", args.blend_file,    # Run in background mode without UI
-        "-o", args.output_file,   # Specify the output file
+        "-o", output_file,   # Specify the output file
         "-a",                     # Render the animation
         #"--", args.hex_color,     # Pass the hex color as an argument
     ]

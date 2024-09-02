@@ -11,6 +11,7 @@ def run_auto_generate_animation(blender_executable, script_file, log_file, n_run
             "-mat", "Body",                # Script arguments
             "-i", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/FemaleBody.blend",
             "-o", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/renders/auto",
+            "-exe", blender_executable,
             "-p", "auto_rendered_animation_",
             "-ext", ".mkv"
         ]
