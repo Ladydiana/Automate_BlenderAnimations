@@ -72,8 +72,14 @@ def set_material_color(material_name, hex_color):
         material.use_nodes = True
         bsdf = material.node_tree.nodes.get("Principled BSDF")
         if bsdf:
-            rgb_color = hex_to_rgb(hex_color)
+            #rgb_color = hex_to_rgb(hex_color)
+            rgb_color = generate_random_color()
+            print(f"Setting the BSDF color to '{rgb_color}'.")
             bsdf.inputs['Base Color'].default_value = (*rgb_color, 1.0)  # Add alpha as 1.0
+        else:
+            print(f"BSDF node not found in material '{material_name}'.")
+    else:
+        print(f"Material '{material_name}' not found.")
             
 
 #If material is Emission            
@@ -102,10 +108,10 @@ def main():
     blender_executable = "C:/Program Files/Blender Foundation/Blender 4.0/blender.exe"  
 
     # Set the path to the .blend file
-    blend_file = "C:/Users/Jedi Knight/Documents/GitHub/SynthwaveAnimations/Auto_LoopDrivingWireframe_City.blend"  
+    blend_file = "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/FemaleBody.blend"  
 
     # Set the output directory and base name
-    output_directory = "C:/Users/Jedi Knight/Documents/GitHub/SynthwaveAnimations/renders/auto"  
+    output_directory = "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/renders/auto"  
     base_name = "auto_rendered_animation_"      # Base name for the output file
     extension = ".mkv"                     # Output file extension
 
@@ -113,7 +119,7 @@ def main():
     hex_color = sys.argv[-1]
 
     # Set the material name that you want to change the color of
-    material_name = "House"  
+    material_name = "Body"  
 
     # Set the output file name
     output_file = os.path.join(output_directory, get_incremented_filename(output_directory, base_name, extension))
@@ -123,7 +129,8 @@ def main():
 
     # Modify the .blend file to update the material color
     #set_material_color(material_name, hex_color)
-    set_emission_color(material_name, hex_color)
+    #set_emission_color(material_name, hex_color)
+    set_material_color(material_name, hex_color)
 
     # !!!IMPORTANT!!! Save the blend file. Otherwise it will render with the default material, not the new one!!!
     bpy.ops.wm.save_mainfile(filepath=blend_file)
