@@ -85,7 +85,20 @@ def set_material_color(material_name, hex_color):
             print(f"BSDF node not found in material '{material_name}'.")
     else:
         print(f"Material '{material_name}' not found.")
-            
+        
+        
+def set_all_material_colors():
+    print("\nMaterial nodes:")
+    for material in bpy.data.materials:
+        print(f"Material: {material.name}")
+        if material:
+            material.use_nodes = True
+            bsdf = material.node_tree.nodes.get("Principled BSDF")
+            if bsdf:
+                rgb_color = generate_random_color()
+                print(f"Setting the BSDF color to '{rgb_color}'.")
+                bsdf.inputs['Base Color'].default_value = (*rgb_color, 1.0)  # Add alpha as 1.0
+                
 
 #If material is Emission            
 def set_emission_color(material_name, hex_color):
@@ -176,7 +189,8 @@ def main():
     # Modify the .blend file to update the material color
     #set_material_color(material_name, hex_color)
     #set_emission_color(material_name, hex_color)
-    set_material_color(args.material_name, args.hex_color)
+    #set_material_color(args.material_name, args.hex_color)
+    set_all_material_colors()
 
     # !!!IMPORTANT!!! Save the blend file. Otherwise it will render with the default material, not the new one!!!
     bpy.ops.wm.save_mainfile(filepath=args.blend_file)

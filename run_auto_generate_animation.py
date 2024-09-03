@@ -9,7 +9,7 @@ def run_auto_generate_animation(blender_executable, script_file, log_file, n_run
             "--python", script_file,       # Specify the Python script to run
             "--",                          # Separates Blender args from your script args
             "-mat", "Body",                # Script arguments
-            "-i", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/FemaleBody.blend",
+            "-i", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/FemaleBody2.blend",
             "-o", "C:/Users/Jedi Knight/Documents/GitHub/AnatomyAnimationsVFX/Body/renders/auto",
             "-exe", blender_executable,
             "-p", "auto_rendered_animation_",
@@ -29,7 +29,7 @@ def run_auto_generate_animation(blender_executable, script_file, log_file, n_run
 blender_executable = r"C:\Program Files\Blender Foundation\Blender 4.0\blender.exe"
 script_file = r"auto_generate_animation.py"  
 log_file = r"log.txt"  # The log file where the output will be saved
-n_runs = 1  # Number of times to run the script
+n_runs = 19  # Number of times to run the script
 
 # Run the script multiple times
 run_auto_generate_animation(blender_executable, script_file, log_file, n_runs)
