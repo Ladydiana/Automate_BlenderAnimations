@@ -188,9 +188,9 @@ def main():
 
     # Modify the .blend file to update the material color
     #set_material_color(material_name, hex_color)
-    #set_emission_color(material_name, hex_color)
+    set_emission_color(args.material_name, args.hex_color)
     #set_material_color(args.material_name, args.hex_color)
-    set_all_material_colors()
+    #set_all_material_colors()
 
     # !!!IMPORTANT!!! Save the blend file. Otherwise it will render with the default material, not the new one!!!
     bpy.ops.wm.save_mainfile(filepath=args.blend_file)
